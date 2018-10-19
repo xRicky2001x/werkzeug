@@ -6,14 +6,15 @@ import operator
 import functools
 import warnings
 
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
-
 
 PY2 = sys.version_info[0] == 2
 WIN = sys.platform.startswith('win')
+
+try:
+    import builtins
+except ImportError:
+    if PY2:
+        import __builtin__ as builtins
 
 _identity = lambda x: x
 
